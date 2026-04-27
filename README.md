@@ -85,3 +85,12 @@ Implemented the main help center listing UI:
 
 - Displays all articles using a reusable ArticleCard component
 - Grid layout for responsive design
+
+## Step 6: Category Filtering
+
+Added category-based filtering for help articles:
+
+- Users can filter articles by category
+- Active category is highlighted
+- Improves navigation and discoverability
+- Enhances browsing experience, search and AI interaction

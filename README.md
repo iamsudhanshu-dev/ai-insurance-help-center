@@ -99,3 +99,18 @@ Added category-based filtering for help articles:
 
 - Added React state for selected category
 - Filtered articles dynamically based on selection
+
+## Step 8: Search Input
+
+Added a reusable SearchBox component:
+
+- Controlled input using React state
+- Designed for help-center article search
+- Supports searching across claims, policy, travel, and payments topics
+
+## Step 9: Search Integration
+
+- Search checks title, category, summary, tags, and article content
+- Search works together with category filtering
+- Added empty state when no articles match
+- It improves discoverability and helps users quickly find insurance-related information

@@ -3,9 +3,11 @@
 import { useState } from "react";
 import HelpCenterList from "@/components/help-center/help-center-list";
 import CategoryFilter from "@/components/help-center/category-filter";
+import SearchBox from "@/components/help-center/search-box";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -22,12 +24,19 @@ const Home = () => {
           Browse help topics, search common insurance questions, and ask an AI
           assistant for step-by-step guidance.
         </p>
+
+        <SearchBox value={searchQuery} onChange={setSearchQuery} />
       </section>
+
       <CategoryFilter
         selected={selectedCategory}
         onChange={setSelectedCategory}
       />
-      <HelpCenterList selectedCategory={selectedCategory} />
+
+      <HelpCenterList
+        selectedCategory={selectedCategory}
+        searchQuery={searchQuery}
+      />
     </main>
   );
 };

@@ -78,3 +78,10 @@ Features:
 - Shows top tags for quick context
 
 This component will be reused in the help center listing and search results.
+
+## Step 5: Help Center Listing
+
+Implemented the main help center listing UI:
+
+- Displays all articles using a reusable ArticleCard component
+- Grid layout for responsive design

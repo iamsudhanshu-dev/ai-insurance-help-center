@@ -37,3 +37,20 @@ npm run dev
 
 Open: http://localhost:3000
 
+--------------------------------------------------------
+
+## Step 1: Project Setup
+
+- Created Next.js app with TypeScript and Tailwind
+- Using App Router architecture
+- Verified local development server
+
+## Step 2: Project Structure
+
+Created a modular folder structure:
+
+- `components/layout` for shared layout components
+- `components/help-center` for help center UI
+- `components/chat` for AI assistant UI
+- `lib` for utility and backend logic
+- `data` for static help center content

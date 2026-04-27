@@ -66,3 +66,15 @@ Added a static insurance help-center dataset with:
 - Content
 
 For this MVP, the dataset is manually curated and AI-synthetic. In production, this can be replaced with CMS data, crawled content, or a knowledge-base integration.
+
+
+## Step 4: Article Card Component
+
+Created a reusable ArticleCard component to display help-center articles.
+
+Features:
+- Displays category badge
+- Shows article title and summary
+- Shows top tags for quick context
+
+This component will be reused in the help center listing and search results.

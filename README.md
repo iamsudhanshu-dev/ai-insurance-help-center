@@ -130,3 +130,23 @@ Implemented a left sidebar for category navigation:
 - Active category highlighting
 - Improves structured navigation vs horizontal chips
 - Aligns with real help-center UX patterns which is provide in assessment document
+
+## Step 14: Banner
+
+- Blue gradient help-center banner
+- Search input integrated inside Banner
+- AI assistance Button
+
+## Step 15: Popular Questions
+
+- Added a popular questions section:
+- Displays commonly asked insurance questions
+- Clickable chips for quick search
+- Improves discoverability and user guidance
+- Displayed result count
+
+## Step 16: Chat Types
+
+- ChatMessage type for user and assistant messages
+- Role-based messaging system
+- Starter questions for better user experience

@@ -7,7 +7,7 @@ type Props = {
 
 const SearchBox = ({ value, onChange }: Props) => {
   return (
-    <div className="mt-8 max-w-2xl">
+    <div>
       <label htmlFor="search" className="sr-only">
         Search help articles
       </label>

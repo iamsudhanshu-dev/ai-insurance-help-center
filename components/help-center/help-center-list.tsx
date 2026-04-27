@@ -33,6 +33,18 @@ const HelpCenterList = ({ selectedCategory, searchQuery }: Props) => {
 
   return (
     <section className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <p className="text-sm font-semibold text-blue-600">Browse articles</p>
+          <h2 className="text-xl font-bold text-slate-900">
+            {selectedCategory === "All" ? "All topics" : selectedCategory}
+          </h2>
+        </div>
+
+        <p className="text-sm text-slate-500">
+          {filteredArticles?.length} results
+        </p>
+      </div>
       {filteredArticles?.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center">
           <h3 className="text-lg font-semibold text-slate-950">

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Header from "@/components/layout/header";
+import Sidebar from "@/components/layout/sidebar";
+import Banner from "@/components/help-center/Banner";
 import HelpCenterList from "@/components/help-center/help-center-list";
-import CategoryFilter from "@/components/help-center/category-filter";
-import SearchBox from "@/components/help-center/search-box";
+import PopularQuestions from "@/components/help-center/popular-questions";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -11,32 +13,25 @@ const Home = () => {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
-          AI Insurance Help Center
-        </p>
+      <Header />
 
-        <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
-          Get insurance help faster with guided articles and AI assistance.
-        </h1>
+      <div className="mx-auto flex max-w-7xl gap-6 px-6 py-8">
+        <div className="hidden lg:block">
+          <Sidebar selected={selectedCategory} onChange={setSelectedCategory} />
+        </div>
 
-        <p className="mt-6 max-w-2xl text-lg text-slate-600">
-          Browse help topics, search common insurance questions, and ask an AI
-          assistant for step-by-step guidance.
-        </p>
-
-        <SearchBox value={searchQuery} onChange={setSearchQuery} />
-      </section>
-
-      <CategoryFilter
-        selected={selectedCategory}
-        onChange={setSelectedCategory}
-      />
-
-      <HelpCenterList
-        selectedCategory={selectedCategory}
-        searchQuery={searchQuery}
-      />
+        <div className="min-w-0 flex-1 space-y-6">
+          <Banner
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+          <PopularQuestions onSelect={(q) => setSearchQuery(q)} />
+          <HelpCenterList
+            selectedCategory={selectedCategory}
+            searchQuery={searchQuery}
+          />
+        </div>
+      </div>
     </main>
   );
 };

@@ -114,3 +114,19 @@ Added a reusable SearchBox component:
 - Search works together with category filtering
 - Added empty state when no articles match
 - It improves discoverability and helps users quickly find insurance-related information
+
+## Step 12: Header Layout
+
+Added a top navigation header:
+
+- Brand logo and product name
+- "Ask AI" button
+
+## Step 13: Sidebar Navigation
+
+Implemented a left sidebar for category navigation:
+
+- Vertical category list
+- Active category highlighting
+- Improves structured navigation vs horizontal chips
+- Aligns with real help-center UX patterns which is provide in assessment document

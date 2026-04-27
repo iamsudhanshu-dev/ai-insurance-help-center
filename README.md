@@ -54,3 +54,15 @@ Created a modular folder structure:
 - `components/chat` for AI assistant UI
 - `lib` for utility and backend logic
 - `data` for static help center content
+
+## Step 3: Help Center Dataset
+
+Added a static insurance help-center dataset with:
+
+- Article title
+- Category
+- Summary
+- Tags
+- Content
+
+For this MVP, the dataset is manually curated and AI-synthetic. In production, this can be replaced with CMS data, crawled content, or a knowledge-base integration.

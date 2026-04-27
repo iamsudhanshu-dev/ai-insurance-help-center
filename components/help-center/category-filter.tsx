@@ -21,7 +21,7 @@ const CategoryFilter = ({ selected, onChange }: Props) => {
         All
       </button>
 
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <button
           key={category}
           onClick={() => onChange(category)}

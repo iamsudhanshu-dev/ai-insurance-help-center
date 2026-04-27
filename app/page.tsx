@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import HelpCenterList from "@/components/help-center/help-center-list";
+import CategoryFilter from "@/components/help-center/category-filter";
 
 const Home = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   return (
     <main className="min-h-screen bg-slate-50">
       <section className="mx-auto max-w-6xl px-6 py-16">
@@ -17,8 +23,11 @@ const Home = () => {
           assistant for step-by-step guidance.
         </p>
       </section>
-
-      <HelpCenterList />
+      <CategoryFilter
+        selected={selectedCategory}
+        onChange={setSelectedCategory}
+      />
+      <HelpCenterList selectedCategory={selectedCategory} />
     </main>
   );
 };

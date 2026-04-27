@@ -94,3 +94,8 @@ Added category-based filtering for help articles:
 - Active category is highlighted
 - Improves navigation and discoverability
 - Enhances browsing experience, search and AI interaction
+
+## Step 7: Category-based Filtering Integration
+
+- Added React state for selected category
+- Filtered articles dynamically based on selection

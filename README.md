@@ -159,7 +159,15 @@ Implemented a left sidebar for category navigation:
 
 ## Step 18: Chat API Integration
 
-- Connected chat UI with backend API:
+- Connected chat UI with backend API
 - Sends user questions to /api/chat
 - Displays response in chat UI
 - Handling API errors
+
+## Step 27: RAG + LLM Integration
+
+- Retrieves relevant articles from dataset
+- Builds context for LLM
+- Sends context and question to OpenRouter
+- Making sure grounded responses
+- Handled Fallback if API key is missing

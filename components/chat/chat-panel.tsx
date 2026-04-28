@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import {
+  forwardRef,
+  useImperativeHandle,
+  useState
+} from "react";
 import { starterQuestions, type ChatMessage } from "./chat-types";
 
-const ChatPanel = () => {
+export type ChatPanelRef = {
+  sendMessage: (question: string) => void;
+};
+
+const ChatPanel = forwardRef<ChatPanelRef>((_, ref) => {
+  const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "welcome",
       role: "assistant",
       content:
-        "Hi! I can help with insurance questions about claims, policies, travel coverage, payments, and deductibles.",
+        "Hi! I can help with claims, policy terms, travel cover, payments, life and health insurance questions."
     }
   ]);
-
-  const [input, setInput] = useState("");
 
   const handleSend = (question?: string) => {
     const userQuestion = (question || input).trim();
@@ -23,42 +30,41 @@ const ChatPanel = () => {
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
-      content: userQuestion,
+      content: userQuestion
     };
 
     const assistantMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "assistant",
       content:
-        "AI response will be connected in the next step. For now, this confirms the chat UI is working.",
+        "AI response will be connected in the next step. For now, this confirms the chat UI is working."
     };
 
-    setMessages((currentMessages) => [
-      ...currentMessages,
-      userMessage,
-      assistantMessage
-    ]);
-
+    setMessages((current) => [...current, userMessage, assistantMessage]);
     setInput("");
   };
 
+  useImperativeHandle(ref, () => ({
+    sendMessage: handleSend
+  }));
+
   return (
-    <section className="flex h-[calc(100vh-120px)] flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="border-b border-slate-100 pb-4">
+    <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <div className="border-b border-slate-100 px-6 py-5">
         <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
           AI Assistant
         </p>
 
-        <h2 className="mt-1 text-lg font-bold text-slate-950">
-          Ask follow-up questions
+        <h2 className="mt-1 text-xl font-bold text-slate-950">
+          Ask insurance questions
         </h2>
 
-        <p className="mt-1 text-xs leading-5 text-slate-600">
+        <p className="mt-1 text-sm text-slate-600">
           Get practical guidance based on help-center articles.
         </p>
       </div>
 
-      <div className="mt-4 flex-1 space-y-4 overflow-y-auto pr-1">
+      <div className="min-h-55 space-y-4 px-6 py-6">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -67,7 +73,7 @@ const ChatPanel = () => {
             }`}
           >
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 ${
+              className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-6 ${
                 message.role === "user"
                   ? "bg-blue-600 text-white"
                   : "bg-slate-100 text-slate-700"
@@ -79,19 +85,19 @@ const ChatPanel = () => {
         ))}
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-2 border-t border-slate-100 pt-4">
+      <div className="flex flex-wrap gap-2 px-6 pb-4">
         {starterQuestions.slice(0, 3).map((question) => (
           <button
             key={question}
             onClick={() => handleSend(question)}
-            className="rounded-full bg-blue-50 px-3 py-2 text-left text-xs font-medium text-blue-700 hover:bg-blue-100"
+            className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200"
           >
             {question}
           </button>
         ))}
       </div>
 
-      <div className="mt-4 flex gap-2">
+      <div className="flex gap-3 border-t border-slate-100 px-6 py-5">
         <input
           value={input}
           onChange={(event) => setInput(event.target.value)}
@@ -100,19 +106,21 @@ const ChatPanel = () => {
               handleSend();
             }
           }}
-          placeholder="Ask about claims, coverage..."
-          className="min-w-0 flex-1 rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+          placeholder="Type your question..."
+          className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
         />
 
         <button
           onClick={() => handleSend()}
-          className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
         >
           Send
         </button>
       </div>
     </section>
   );
-};
+});
+
+ChatPanel.displayName = "ChatPanel";
 
 export default ChatPanel;

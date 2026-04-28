@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "@/components/layout/header";
 import Sidebar from "@/components/layout/sidebar";
 import Banner from "@/components/help-center/Banner";
@@ -11,6 +11,15 @@ import ChatPanel from "@/components/chat/chat-panel";
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const chatRef = useRef<{ sendMessage: (q: string) => void } | null>(null);
+
+  const handleAskAI = (question: string) => {
+    chatRef.current?.sendMessage(question);
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  };
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -36,9 +45,10 @@ const Home = () => {
             <HelpCenterList
               selectedCategory={selectedCategory}
               searchQuery={searchQuery}
+              onAskAI={handleAskAI}
             />
 
-            <ChatPanel />
+            <ChatPanel ref={chatRef} />
           </div>
         </div>
       </div>

@@ -7,9 +7,10 @@ import type { HelpArticle } from "@/data/articles";
 type Props = {
   selectedCategory: string;
   searchQuery: string;
+  onAskAI: (question: string) => void;
 };
 
-const HelpCenterList = ({ selectedCategory, searchQuery }: Props) => {
+const HelpCenterList = ({ selectedCategory, searchQuery, onAskAI }: Props) => {
   const normalizedQuery = searchQuery?.toLowerCase().trim();
 
   const filteredArticles: HelpArticle[] = articles?.filter((article) => {
@@ -57,7 +58,11 @@ const HelpCenterList = ({ selectedCategory, searchQuery }: Props) => {
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredArticles?.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+            <ArticleCard
+              key={article.id}
+              article={article}
+              onAskAI={onAskAI}
+            />
           ))}
         </div>
       )}

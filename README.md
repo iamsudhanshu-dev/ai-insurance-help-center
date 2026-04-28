@@ -1,6 +1,6 @@
 # AI Insurance Help Center
 
-A modern AI-powered insurance help center built with Next.js, React, TypeScript, and Tailwind CSS.
+A modern AI-powered insurance help center built with Next.js, React.js, TypeScript, and Tailwind CSS.
 
 ## Project Goal
 
@@ -36,8 +36,8 @@ npm install
 npm run dev
 
 Open: http://localhost:3000
-
---------------------------------------------------------
+Github: https://github.com/iamsudhanshu-dev/ai-insurance-help-center
+--------------------------------------------------------------------
 
 ## Step 1: Project Setup
 
@@ -164,7 +164,7 @@ Implemented a left sidebar for category navigation:
 - Displays response in chat UI
 - Handling API errors
 
-## Step 27: RAG + LLM Integration
+## Step 19: RAG + LLM Integration
 
 - Retrieves relevant articles from dataset
 - Builds context for LLM

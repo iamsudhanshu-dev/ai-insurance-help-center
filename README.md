@@ -150,3 +150,9 @@ Implemented a left sidebar for category navigation:
 - ChatMessage type for user and assistant messages
 - Role-based messaging system
 - Starter questions for better user experience
+
+## Step 17: Chat Panel
+
+- Starter questions
+- User can input questions and ask from AI
+- Manage Layout based on scroll

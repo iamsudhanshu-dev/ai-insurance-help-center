@@ -32,7 +32,7 @@ const HelpCenterList = ({ selectedCategory, searchQuery }: Props) => {
   });
 
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-16">
+    <section className="mx-auto max-w-6xl">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-blue-600">Browse articles</p>

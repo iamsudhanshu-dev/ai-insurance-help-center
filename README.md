@@ -171,3 +171,25 @@ Implemented a left sidebar for category navigation:
 - Sends context and question to OpenRouter
 - Making sure grounded responses
 - Handled Fallback if API key is missing
+
+## Final Features
+
+- Help center browsing (categories + search)
+- AI assistant with chat interface
+- Lightweight RAG implementation
+- Context-based AI responses
+- Loading states and error handling
+- Auto-scroll chat UX
+- Starter questions for guidance
+
+## AI Design
+
+- Context injection to LLM
+- OpenRouter for model access
+- No vector DB (tradeoff for simplicity) 
+
+## Tradeoffs
+
+- Did not implement full vector DB RAG due to time and complexity
+- Used lightweight retrieval for explainability
+- Focused on practical AI integration into user flow

@@ -21,6 +21,13 @@ export async function POST(req: Request) {
     const relevantArticles = retrieveRelevantArticles(question, 3);
     const context = buildContext(relevantArticles);
 
+    if (!relevantArticles.length) {
+        return NextResponse.json({
+            answer:
+            "I couldn’t find relevant information for your question. Please ask about insurance topics like claims, policies, payments, or coverage."
+        });
+    }
+
     if (!apiKey) {
       return NextResponse.json({
         answer:
@@ -29,7 +36,15 @@ export async function POST(req: Request) {
       });
     }
 
-    const prompt = `You are an insurance help assistant. Answer ONLY from the context below. If the answer is not present, say you don't know.
+    const prompt = `
+        You are an insurance help assistant.
+
+        STRICT RULES:
+        - Answer ONLY from the provided context
+        - If answer is not clearly found → say "I don’t have enough information"
+        - Do NOT guess
+        - Do NOT combine unrelated content
+
         Context:
         ${context}
 
@@ -68,7 +83,10 @@ export async function POST(req: Request) {
       data?.choices?.[0]?.message?.content ||
       "No response from AI.";
 
-    return NextResponse.json({ answer });
+    return NextResponse.json({
+        answer,
+        sources: relevantArticles.map(a => a.title)
+    });
 
   } catch {
     return NextResponse.json(

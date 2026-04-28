@@ -6,24 +6,34 @@ import Sidebar from "@/components/layout/sidebar";
 import Banner from "@/components/help-center/Banner";
 import PopularQuestions from "@/components/help-center/popular-questions";
 import HelpCenterList from "@/components/help-center/help-center-list";
-import ChatPanel from "@/components/chat/chat-panel";
+import ChatPanel, { type ChatPanelRef } from "@/components/chat/chat-panel";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const chatRef = useRef<{ sendMessage: (q: string) => void } | null>(null);
+  const chatRef = useRef<ChatPanelRef>(null);
+  const chatSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleAskAI = (question: string) => {
-    chatRef.current?.sendMessage(question);
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth"
+  const scrollToChat = () => {
+    chatSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
+  };
+
+  const handleAskAI = (question?: string) => {
+    scrollToChat();
+
+    if (question?.trim()) {
+      setTimeout(() => {
+        chatRef.current?.sendMessage(question);
+      }, 400);
+    }
   };
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <Header />
+      <Header onAskAI={scrollToChat} />
 
       <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="flex gap-6">
@@ -38,6 +48,7 @@ const Home = () => {
             <Banner
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
+              onAskAI={() => handleAskAI(searchQuery)}
             />
 
             <PopularQuestions onSelect={(q) => setSearchQuery(q)} />
@@ -48,7 +59,9 @@ const Home = () => {
               onAskAI={handleAskAI}
             />
 
-            <ChatPanel ref={chatRef} />
+            <div ref={chatSectionRef}>
+              <ChatPanel ref={chatRef} />
+            </div>
           </div>
         </div>
       </div>

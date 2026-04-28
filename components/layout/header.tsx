@@ -1,4 +1,8 @@
-const Header = () => {
+type Props = {
+  onAskAI?: () => void;
+};
+
+const Header = ({ onAskAI }: Props) => {
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -13,7 +17,10 @@ const Header = () => {
             </p>
           </div>
         </div>
-        <button className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+        <button
+          onClick={onAskAI}
+          className="cursor-pointer rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+        >
           Ask AI
         </button>
       </div>

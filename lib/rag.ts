@@ -24,11 +24,14 @@ export function retrieveRelevantArticles(query: string, topK = 3) {
     return { article, score };
   });
 
-  return scored
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK)
-    .map((item) => item.article);
-}
+  const sorted = scored?.sort((a, b) => b.score - a.score);
+    const bestScore = sorted[0]?.score || 0;
+    if (bestScore < 2) {
+      return [];
+    }
+
+    return sorted?.slice(0, topK)?.map((item) => item.article);
+  }
 
 export function buildContext(articles: Article[]) {
   return articles

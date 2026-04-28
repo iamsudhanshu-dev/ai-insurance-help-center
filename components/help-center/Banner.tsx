@@ -3,9 +3,10 @@ import SearchBox from "./search-box";
 type Props = {
   searchQuery: string;
   onSearchChange: (value: string) => void;
+  onAskAI: () => void;
 };
 
-const Banner = ({ searchQuery, onSearchChange }: Props) => {
+const Banner = ({ searchQuery, onSearchChange, onAskAI }: Props) => {
   return (
     <section className="rounded-3xl bg-linear-to-br from-blue-950 to-blue-600 p-8 text-white shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
@@ -26,7 +27,10 @@ const Banner = ({ searchQuery, onSearchChange }: Props) => {
           <SearchBox value={searchQuery} onChange={onSearchChange} />
         </div>
 
-        <button className="rounded-2xl bg-white px-6 py-4 text-sm font-bold text-blue-700 hover:bg-blue-50">
+        <button
+          onClick={onAskAI}
+          className="cursor-pointer rounded-2xl bg-white px-6 py-4 text-sm font-bold text-blue-700 hover:bg-blue-50"
+        >
           Ask AI with this
         </button>
       </div>

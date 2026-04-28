@@ -22,7 +22,7 @@ const ChatPanel = forwardRef<ChatPanelRef>((_, ref) => {
     }
   ]);
 
-  const handleSend = (question?: string) => {
+  const handleSend = async (question?: string) => {
     const userQuestion = (question || input).trim();
 
     if (!userQuestion) return;
@@ -30,18 +30,40 @@ const ChatPanel = forwardRef<ChatPanelRef>((_, ref) => {
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
-      content: userQuestion
+      content: userQuestion,
     };
 
-    const assistantMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "assistant",
-      content:
-        "AI response will be connected in the next step. For now, this confirms the chat UI is working."
-    };
-
-    setMessages((current) => [...current, userMessage, assistantMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: userQuestion }),
+      });
+
+      const data = await res.json();
+
+      const aiMessage: ChatMessage = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: data.answer || "No response",
+      };
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: "Something went wrong. Please try again.",
+        },
+      ]);
+    }
   };
 
   useImperativeHandle(ref, () => ({

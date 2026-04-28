@@ -156,3 +156,10 @@ Implemented a left sidebar for category navigation:
 - Starter questions
 - User can input questions and ask from AI
 - Manage Layout based on scroll
+
+## Step 18: Chat API Integration
+
+- Connected chat UI with backend API:
+- Sends user questions to /api/chat
+- Displays response in chat UI
+- Handling API errors
